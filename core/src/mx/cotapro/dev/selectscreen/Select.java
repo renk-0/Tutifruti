@@ -43,7 +43,7 @@ public class Select implements Screen{
 
 	public void createTable(Table tabla) {
 		String[][] images = {
-			{"oveja"}
+			{"oveja", "oso"}
 		};
 		caras = new Cara[images.length][images[0].length];
 		for(int i = 0; i < images.length; i++) {

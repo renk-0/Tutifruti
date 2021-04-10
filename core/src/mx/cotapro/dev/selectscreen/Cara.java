@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import mx.cotapro.dev.Tutifruti;
 import mx.cotapro.dev.mainscreen.Main;
+import mx.cotapro.dev.oso.Screens.PlayScreen;
 import mx.cotapro.dev.oveja.Oveja;
 
 import com.badlogic.gdx.Screen;
@@ -28,7 +29,7 @@ public class Cara extends Image {
 				if(j == 0)
 					return setOveja(game);
 				else
-					return setOveja(game);
+					return setOso(game);
 			default:
 				return new Main(game);
 		}
@@ -36,5 +37,9 @@ public class Cara extends Image {
 	
 	private Screen setOveja(final Tutifruti game) {
 		return new Oveja(game);
+	}
+
+	private Screen setOso(final Tutifruti game) {
+		return new PlayScreen(game);
 	}
 }
