@@ -67,7 +67,6 @@ public class Main implements Screen {
 			long diff = TimeUtils.millis() - time;
 			if(diff > 500) {
 				game.setScreen(new Select(game));
-				dispose();
 				return;
 			}
 		}
@@ -94,6 +93,7 @@ public class Main implements Screen {
 	}
 	@Override
 	public void hide() {
+		dispose();
 	}
 	@Override
 	public void show() {

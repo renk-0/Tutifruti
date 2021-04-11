@@ -1,5 +1,7 @@
 package mx.cotapro.dev.selectscreen;
 
+import javax.lang.model.type.NullType;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -43,20 +45,23 @@ public class Select implements Screen{
 
 	public void createTable(Table tabla) {
 		String[][] images = {
-			{"oveja", "oso"}
+			{"oveja", "oso"},
+			{"serpiente", "tortuga"},
+			{"cerdo", "abeja"},
+			{"oruga", "oruga"}
 		};
 		caras = new Cara[images.length][images[0].length];
 		for(int i = 0; i < images.length; i++) {
+			tabla.row();
 			for(int j = 0; j < images[i].length; j++) {
 				caras[i][j] = new Cara(new Texture(Gdx.files.internal(images[i][j] + "/ico.png")), i, j);
 				float factor = caras[i][j].getHeight()/caras[i][j].getWidth();
-				tabla.add(caras[i][j]).size(100f, 100f * factor);
+				tabla.add(caras[i][j]).size(120f, 120f * factor).pad(5f);
 				caras[i][j].addListener(new ClickListener() {
 					@Override
 					public void clicked(InputEvent ev, float x, float y) {
 						Cara cara = (Cara)ev.getTarget();
 						game.setScreen(cara.getScreen(game));
-						dispose();
 					}
 				});
 			}
@@ -102,6 +107,6 @@ public class Select implements Screen{
 
 	@Override
 	public void hide() {
-		
+		dispose();
 	}
 }

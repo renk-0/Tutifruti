@@ -1,0 +1,76 @@
+
+imagenes.png
+size: 8192, 8192
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+SpaceTurtle1
+  rotate: false
+  xy: 0, 37
+  size: 186, 190
+  orig: 186, 190
+  offset: 0, 0
+  index: -1
+Starscape00
+  rotate: false
+  xy: 0, 227
+  size: 1080, 1920
+  orig: 1080, 1920
+  offset: 0, 0
+  index: -1
+Starscape01
+  rotate: false
+  xy: 0, 2147
+  size: 1080, 1920
+  orig: 1080, 1920
+  offset: 0, 0
+  index: -1
+Starscape02
+  rotate: false
+  xy: 1080, 2147
+  size: 1080, 1920
+  orig: 1080, 1920
+  offset: 0, 0
+  index: -1
+enemyRed2
+  rotate: false
+  xy: 186, 143
+  size: 104, 84
+  orig: 104, 84
+  offset: 0, 0
+  index: -1
+imagenes
+  rotate: false
+  xy: 0, 4067
+  size: 8192, 4096
+  orig: 8192, 4096
+  offset: 0, 0
+  index: -1
+laserBlue04
+  rotate: false
+  xy: 0, 0
+  size: 13, 37
+  orig: 13, 37
+  offset: 0, 0
+  index: -1
+laserRed03
+  rotate: false
+  xy: 1080, 1991
+  size: 9, 37
+  orig: 9, 37
+  offset: 0, 0
+  index: -1
+shield1
+  rotate: false
+  xy: 2160, 3959
+  size: 133, 108
+  orig: 133, 108
+  offset: 0, 0
+  index: -1
+shield2
+  rotate: false
+  xy: 1080, 2028
+  size: 143, 119
+  orig: 143, 119
+  offset: 0, 0
+  index: -1

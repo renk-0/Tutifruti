@@ -7,6 +7,9 @@ import mx.cotapro.dev.Tutifruti;
 import mx.cotapro.dev.mainscreen.Main;
 import mx.cotapro.dev.oso.Screens.PlayScreen;
 import mx.cotapro.dev.oveja.Oveja;
+import mx.cotapro.dev.serpiente.MyGdxGame;
+import mx.cotapro.dev.tortuga.GameScreen;
+import mx.cotapro.dev.oruga.Oruga;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
@@ -27,19 +30,24 @@ public class Cara extends Image {
 		switch(i) {
 			case 0:
 				if(j == 0)
-					return setOveja(game);
+					return new Oveja(game);
 				else
-					return setOso(game);
+					return new PlayScreen(game);
+			case 1:
+				if(j == 0)
+					return new MyGdxGame(game);
+				else
+					return new GameScreen(game);
+			case 2:
+				if(j == 0) 
+					return new mx.cotapro.dev.elcerdito.GameScreen(game);
+				else
+					return new mx.cotapro.dev.abeja.MyGdxGame(game);
+			case 3:
+				if(j == 0)
+					return new Oruga(game);
 			default:
 				return new Main(game);
 		}
-	}
-	
-	private Screen setOveja(final Tutifruti game) {
-		return new Oveja(game);
-	}
-
-	private Screen setOso(final Tutifruti game) {
-		return new PlayScreen(game);
 	}
 }

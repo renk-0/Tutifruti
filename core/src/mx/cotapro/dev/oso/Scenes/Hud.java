@@ -32,12 +32,14 @@ public class Hud implements Disposable {
         timeCount=0;
         score=0;
 
-        viewport = new FitViewport(Oso.V_WIDTH, Oso.V_HEIGHT, new OrthographicCamera());
+		OrthographicCamera cam = new OrthographicCamera();
+		cam.rotate(90f);
+        viewport = new FitViewport(Oso.V_HEIGHT, Oso.V_WIDTH, cam);
         stage = new Stage(viewport, sb);
-		stage.setDebugAll(true);
-        Table table = new Table();
-        table.top();
-        table.setFillParent(true);
+		Table table = new Table();
+        table.top().left();
+		table.setPosition((Oso.V_HEIGHT - Oso.V_WIDTH)/2f, (Oso.V_WIDTH - Oso.V_HEIGHT)/2f);
+		table.setSize(Oso.V_WIDTH, Oso.V_HEIGHT);
 
         countdownLabel = new Label(String.format("%03d", worldTimer), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         scoreLabel = new Label(String.format("%06d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
@@ -45,7 +47,6 @@ public class Hud implements Disposable {
         levelLabel = new Label("1-1", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         worldLabel = new Label("WORLD", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         osoLabel = new Label("OSO", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-
         table.add(osoLabel).expandX().padTop(10);
         table.add(worldLabel).expandX().padTop(10);
         table.add(timeLabel).expandX().padTop(10);

@@ -106,7 +106,6 @@ public class Oveja implements Screen {
 	}
 	@Override
 	public void hide() {
-		// TODO Auto-generated method stub
-		
+		dispose();
 	}
 }

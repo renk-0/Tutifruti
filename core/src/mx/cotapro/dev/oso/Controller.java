@@ -21,17 +21,12 @@ public class Controller {
     boolean upPressed, downPressed, leftPressed, rigthPressed;
     OrthographicCamera cam;
 
-    public Controller(final Tutifruti game){
-        cam = new OrthographicCamera();
-        viewport = new FitViewport(
-				Oso.V_WIDTH, 
-				Oso.V_HEIGHT, cam);
-        stage = new Stage(viewport, game.batch);
+    public Controller(final Tutifruti game, Viewport vport){
+        stage = new Stage(vport, game.batch);
         Gdx.input.setInputProcessor(stage);
-		stage.setDebugAll(true);
         Table table =  new Table();
- 		table.bottom().left();
-
+ 		table.setPosition((Oso.V_HEIGHT - Oso.V_WIDTH)/2f, (Oso.V_WIDTH - Oso.V_HEIGHT)/2f);
+		table.bottom().left();
         Image upImage = new Image (new Texture("oso/up.png"));
         upImage.addListener(new InputListener(){
             @Override

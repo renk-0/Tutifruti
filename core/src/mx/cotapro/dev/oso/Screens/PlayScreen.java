@@ -13,6 +13,8 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 
 import mx.cotapro.dev.Tutifruti;
 import mx.cotapro.dev.oso.Controller;
@@ -34,23 +36,28 @@ public class PlayScreen implements Screen {
     private World world;
     private Box2DDebugRenderer b2dr;
     private osos player;
+	public static AssetManager manager;
     Controller controller;
 
     public PlayScreen(final Tutifruti game){
-        this.game = game;
+		manager = new AssetManager();
+        manager.load("oso/jump.wav", Sound.class);
+        manager.finishLoading();
+		this.game = game;
         gamecam = new OrthographicCamera();
-        gamePort = new FitViewport(Oso.V_WIDTH/Oso.PPM, Oso.V_HEIGHT/Oso.PPM, gamecam);
+		gamecam.rotate(90f);
+		gamePort = new FitViewport(Oso.V_HEIGHT/Oso.PPM, Oso.V_WIDTH/Oso.PPM, gamecam);
         hud = new Hud(game.batch);
         mapLoader = new TmxMapLoader();
         map = mapLoader.load("oso/Nivel1.tmx");
         renderer = new OrthogonalTiledMapRenderer(map, 1/Oso.PPM);
-        gamecam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2, 0);
+        gamecam.position.set(gamePort.getWorldHeight()/2, gamePort.getWorldWidth()/2, 0);
         world = new World(new Vector2(0,-10), true);
         b2dr = new Box2DDebugRenderer();
         new B2WorldCreator(world, map);
         player = new osos(world);
         world.setContactListener(new WorldContactListener());
-        controller = new Controller(game);
+        controller = new Controller(game, hud.stage.getViewport());
     }
 
     @Override
@@ -66,8 +73,10 @@ public class PlayScreen implements Screen {
             player.b2body.setLinearVelocity(new Vector2(-1, player.b2body.getLinearVelocity().y));
         else
             player.b2body.setLinearVelocity(new Vector2(0, player.b2body.getLinearVelocity().y));
-        if (controller.isUpPressed() && player.b2body.getLinearVelocity().y == 0)
+        if (controller.isUpPressed() && player.b2body.getLinearVelocity().y == 0) {
             player.b2body.applyLinearImpulse(new Vector2(0, 5f), player.b2body.getWorldCenter(), true);
+			manager.get("oso/jump.wav", Sound.class).play();
+		}
 
         /*if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
             player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
@@ -94,12 +103,11 @@ public class PlayScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        update(delta);
-
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         renderer.render();
+        update(delta);
 
         //b2dr.render(world, gamecam.combined);
 
@@ -115,7 +123,8 @@ public class PlayScreen implements Screen {
     @Override
     public void resize(int width, int height) {
         gamePort.update(width, height);
-    }
+    	hud.stage.getViewport().update(width, height);
+	}
 
     @Override
     public void pause() {
@@ -129,7 +138,6 @@ public class PlayScreen implements Screen {
 
     @Override
     public void hide() {
-
     }
 
     @Override
@@ -139,7 +147,6 @@ public class PlayScreen implements Screen {
         world.dispose();
         b2dr.dispose();
         hud.dispose();
-
-
+		manager.dispose();
     }
 }
