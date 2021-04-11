@@ -69,9 +69,9 @@ public class GameScreen extends BaseScreen {
         world.setContactListener(new GameContactListener());
 
         // Get the sound effect references that will play during the game.
-        jumpSound = game.getManager().get("audio/jump.ogg");
-        dieSound = game.getManager().get("audio/die.ogg");
-        backgroundMusic = game.getManager().get("audio/song.ogg");
+        jumpSound = game.getManager().get("carcal/audio/jump.ogg");
+        dieSound = game.getManager().get("carcal/audio/die.ogg");
+        backgroundMusic = game.getManager().get("carcal/audio/song.ogg");
     }
 
     /**
@@ -185,6 +185,11 @@ public class GameScreen extends BaseScreen {
         world.dispose();
     }
 
+	@Override
+	public void resize(int width, int height) {
+		this.stage.getViewport().update(width, height);
+	}
+
     /**
      * This is the contact listener that checks the world for collisions and contacts.
      * I use this method to evaluate when things collide, such as player colliding with floor.
@@ -251,7 +256,7 @@ public class GameScreen extends BaseScreen {
 
                                         @Override
                                         public void run() {
-                                            game.setScreen(game.gameOverScreen);
+                                            game.game.setScreen(game.gameOverScreen);
                                         }
                                     })
                             )

@@ -26,8 +26,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-
-package mx.cotapro.dev.carcal.game.entities;
+import mx.cotapro.dev.carcal.game.Constants;
 
 /**
  * This entity represents the floor. The player and the spikes are above the floor. You cannot go

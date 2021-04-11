@@ -29,6 +29,8 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
+import mx.cotapro.dev.carcal.game.Constants;
+
 /**
  * This is the body the user controls. It has to jump and don't die, like the title of the game
  * says. You can make it jump by touching the screen. Don't let the player touch any spike or
@@ -87,7 +89,7 @@ public class PlayerEntity extends Actor {
         box.dispose();                              // (5) Destroy the shape.
 
         // Set the size to a value that is big enough to be rendered on the screen.
-        setSize(es.danirod.jddprototype.game.Constants.PIXELS_IN_METER, es.danirod.jddprototype.game.Constants.PIXELS_IN_METER);
+        setSize(Constants.PIXELS_IN_METER, Constants.PIXELS_IN_METER);
     }
 
     @Override
@@ -95,8 +97,8 @@ public class PlayerEntity extends Actor {
         // Always update the position of the actor when you are going to draw it, so that the
         // position of the actor on the screen is as accurate as possible to the current position
         // of the Box2D body.
-        setPosition((body.getPosition().x - 0.5f) * es.danirod.jddprototype.game.Constants.PIXELS_IN_METER,
-                    (body.getPosition().y - 0.5f) * es.danirod.jddprototype.game.Constants.PIXELS_IN_METER);
+        setPosition((body.getPosition().x - 0.5f) * Constants.PIXELS_IN_METER,
+                    (body.getPosition().y - 0.5f) * Constants.PIXELS_IN_METER);
         batch.draw(texture, getX(), getY(), getWidth(), getHeight());
     }
 
@@ -119,12 +121,12 @@ public class PlayerEntity extends Actor {
             // this speed has to be managed by the forces applied to the player. If we modify
             // Y speed, jumps can get very very weir.d
             float speedY = body.getLinearVelocity().y;
-            body.setLinearVelocity(es.danirod.jddprototype.game.Constants.PLAYER_SPEED, speedY);
+            body.setLinearVelocity(Constants.PLAYER_SPEED, speedY);
         }
 
         // If the player is jumping, apply some opposite force so that the player falls faster.
         if (jumping) {
-            body.applyForceToCenter(0, -es.danirod.jddprototype.game.Constants.IMPULSE_JUMP * 1.15f, true);
+            body.applyForceToCenter(0, -Constants.IMPULSE_JUMP * 1.15f, true);
         }
     }
 
@@ -138,7 +140,7 @@ public class PlayerEntity extends Actor {
             // during the jump. We get the position becase we have to apply the impulse
             // at the center of mass of the body.
             Vector2 position = body.getPosition();
-            body.applyLinearImpulse(0, es.danirod.jddprototype.game.Constants.IMPULSE_JUMP, position.x, position.y, true);
+            body.applyLinearImpulse(0, Constants.IMPULSE_JUMP, position.x, position.y, true);
         }
     }
 

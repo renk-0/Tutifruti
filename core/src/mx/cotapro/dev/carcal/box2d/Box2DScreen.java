@@ -13,9 +13,12 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 
-public class Box2DScreen extends es.danirod.jddprototype.game.BaseScreen {
+import mx.cotapro.dev.carcal.game.BaseScreen;
+import mx.cotapro.dev.carcal.game.MainGame;
 
-    public Box2DScreen(es.danirod.jddprototype.game.MainGame game) {
+public class Box2DScreen extends BaseScreen {
+
+    public Box2DScreen(MainGame game) {
         super(game);
     }
 

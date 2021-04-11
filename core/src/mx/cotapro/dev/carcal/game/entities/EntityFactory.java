@@ -27,7 +27,7 @@ public class EntityFactory {
      * @return          a player.
      */
     public PlayerEntity createPlayer(World world, Vector2 position) {
-        Texture playerTexture = manager.get("player.png");
+        Texture playerTexture = manager.get("carcal/player.png");
         return new PlayerEntity(world, playerTexture, position);
     }
 
@@ -40,8 +40,8 @@ public class EntityFactory {
      * @return          a floor.
      */
     public FloorEntity createFloor(World world, float x, float width, float y) {
-        Texture floorTexture = manager.get("floor.png");
-        Texture overfloorTexture = manager.get("overfloor.png");
+        Texture floorTexture = manager.get("carcal/floor.png");
+        Texture overfloorTexture = manager.get("carcal/overfloor.png");
         return new FloorEntity(world, floorTexture, overfloorTexture, x, width, y);
     }
 
@@ -53,7 +53,7 @@ public class EntityFactory {
      * @return          some spikes.
      */
     public SpikeEntity createSpikes(World world, float x, float y) {
-        Texture spikeTexture = manager.get("spike.png");
+        Texture spikeTexture = manager.get("carcal/spike.png");
         return new SpikeEntity(world, spikeTexture, x, y);
     }
 

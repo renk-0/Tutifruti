@@ -4,6 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import mx.cotapro.dev.Tutifruti;
+import mx.cotapro.dev.carcal.game.MainGame;
 import mx.cotapro.dev.mainscreen.Main;
 import mx.cotapro.dev.oso.Screens.PlayScreen;
 import mx.cotapro.dev.oveja.Oveja;
@@ -46,6 +47,8 @@ public class Cara extends Image {
 			case 3:
 				if(j == 0)
 					return new Oruga(game);
+				else 
+					return new MainGame(game).loadingScreen();
 			default:
 				return new Main(game);
 		}

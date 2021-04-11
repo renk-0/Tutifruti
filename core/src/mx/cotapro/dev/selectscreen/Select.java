@@ -1,7 +1,5 @@
 package mx.cotapro.dev.selectscreen;
 
-import javax.lang.model.type.NullType;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -48,7 +46,7 @@ public class Select implements Screen{
 			{"oveja", "oso"},
 			{"serpiente", "tortuga"},
 			{"cerdo", "abeja"},
-			{"oruga", "oruga"}
+			{"oruga", "carcal"}
 		};
 		caras = new Cara[images.length][images[0].length];
 		for(int i = 0; i < images.length; i++) {

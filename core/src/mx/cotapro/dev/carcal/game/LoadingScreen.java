@@ -24,7 +24,7 @@ public class LoadingScreen extends BaseScreen {
 
         // Set up the stage and the skin. See GameOverScreen for more comments on this.
         stage = new Stage(new FitViewport(640, 360));
-        skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
+        skin = new Skin(Gdx.files.internal("carcal/skin/uiskin.json"));
 
         // Create some loading text using this skin file and position it on screen.
         loading = new Label("Loading...", skin);
@@ -62,4 +62,9 @@ public class LoadingScreen extends BaseScreen {
         stage.dispose();
         skin.dispose();
     }
+	
+	@Override
+	public void resize(int width, int height) {
+		stage.getViewport().update(width, height);
+	}
 }

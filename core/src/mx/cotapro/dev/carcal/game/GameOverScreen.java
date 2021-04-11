@@ -37,7 +37,7 @@ public class GameOverScreen extends BaseScreen {
 
         // Load the skin file. The skin file contains information about the skins. It can be
         // passed to any widget in Scene2D UI to set the style. It just works, amazing.
-        skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
+        skin = new Skin(Gdx.files.internal("carcal/skin/uiskin.json"));
 
         // For instance, here you see that I create a new button by telling the label of the
         // button as well as the skin file. The background image for the button is in the skin
@@ -47,7 +47,7 @@ public class GameOverScreen extends BaseScreen {
 
         // Also, create an image. Images are actors that only display some texture. Useful if you
         // want to display a texture in a Scene2D based screen but you don't want to rewrite code.
-        gameover = new Image(game.getManager().get("gameover.png", Texture.class));
+        gameover = new Image(game.getManager().get("carcal/gameover.png", Texture.class));
 
         // Add capture listeners. Capture listeners have one method, changed, that is executed
         // when the button is pressed or when the user interacts somehow with the widget. They are
@@ -56,7 +56,7 @@ public class GameOverScreen extends BaseScreen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 // Here I go to the game screen again.
-                game.setScreen(game.gameScreen);
+                game.game.setScreen(game.gameScreen);
             }
         });
 
@@ -64,7 +64,7 @@ public class GameOverScreen extends BaseScreen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 // And here I go to the menu screen.
-                game.setScreen(game.menuScreen);
+                game.game.setScreen(game.menuScreen);
             }
         });
 
@@ -82,6 +82,11 @@ public class GameOverScreen extends BaseScreen {
         stage.addActor(gameover);
         stage.addActor(menu);
     }
+
+	@Override
+	public void resize(int width, int height) {
+		this.stage.getViewport().update(width, height);
+	}
 
     @Override
     public void show() {
