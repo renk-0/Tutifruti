@@ -1,6 +1,7 @@
 package mx.cotapro.dev.elcerdito.entities;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
@@ -14,50 +15,30 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import static mx.cotapro.dev.elcerdito.constants.PIXELS_IN_METER;
 
-public class cerditoEntity extends Actor {
-
+public class cerditoEntity extends Image{
     private Texture texture;
-    private World world;
-    private Body body;
-    private Fixture fixture;
+	private Sound oink;
 
-    public cerditoEntity(World world, Texture texture, Vector2 position)
+    public cerditoEntity(Sound sonido, Texture texture, Vector2 position)
     {
-
-        this.world= world;
+		super(texture);
         this.texture=texture;
-        BodyDef def= new BodyDef();
-        def.position.set(position);
-        def.type= BodyDef.BodyType.StaticBody;
-        body=world.createBody(def);
+      	this.oink = sonido;
 
-        PolygonShape box= new PolygonShape();
-        box.setAsBox(1f, 1f);
-        fixture=body.createFixture(box, 1);
-        box.dispose();
-
-
-        setSize(3*PIXELS_IN_METER, 3*PIXELS_IN_METER);
-
-
-    }
-
-    @Override
-    public void draw(Batch batch, float parentAlpha) {
-        setPosition((body.getPosition().x-0.5f)*PIXELS_IN_METER,
-                (body.getPosition().y-0.5f)*PIXELS_IN_METER);
-        batch.draw(texture, getX(), getY(), getWidth(), getHeight());
-
-    }
-    public void detach()
-    {
-        body.destroyFixture(fixture);
-        world.destroyBody(body);
+		addListener(new ClickListener(){
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				oink.stop();
+				oink.play();
+			}
+		});
+		setPosition(0, 0);
     }
 
 }

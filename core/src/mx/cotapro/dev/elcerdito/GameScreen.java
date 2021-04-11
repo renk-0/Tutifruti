@@ -2,8 +2,8 @@ package mx.cotapro.dev.elcerdito;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -20,21 +20,19 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-
-import com.badlogic.gdx.graphics.g2d.freetype.FreeType;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
-
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import mx.cotapro.dev.elcerdito.entities.cerditoEntity;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import mx.cotapro.dev.Tutifruti;
 import mx.cotapro.dev.elcerdito.BaseScreen;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;import mx.cotapro.dev.elcerdito.entities.atrapaEntity;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
+import mx.cotapro.dev.elcerdito.entities.atrapaEntity;
 
 public class GameScreen extends BaseScreen {
     private World world;
     private Stage stage;
     private cerditoEntity cochi;
-    private atrapaEntity atrapa;
     private Texture fondo;
     private Sprite sprite;
     private Batch batch;
@@ -45,16 +43,14 @@ public class GameScreen extends BaseScreen {
     public GameScreen(final Tutifruti game) {
 		super(game);
         manager = new AssetManager();
-        manager.load("cerdo/atrapa.png", Texture.class);
         manager.load("cerdo/cerdito.png", Texture.class);
         manager.load("cerdo/cochi.png", Texture.class);
         manager.load("cerdo/fondo.png", Texture.class);
-        manager.finishLoading();
+        manager.load("cerdo/oink.mp3", Sound.class);
+		manager.finishLoading();
 
 
         Texture cochiTexture = manager.get("cerdo/cerdito.png", Texture.class);
-        Texture atrapaTexture = manager.get("cerdo/atrapa.png", Texture.class);
-
         // Camera cm = new OrtographicCamera();
     	stage= new Stage(new FitViewport(1080, 2210));
 
@@ -64,26 +60,14 @@ public class GameScreen extends BaseScreen {
 
         sprite.setSize(1080, 2210);
 		batch = game.batch;
-
-        cochi= new cerditoEntity(world, cochiTexture, new Vector2 (5f, 10.5f));
-        atrapa= new atrapaEntity(world, atrapaTexture, new Vector2(0.5f, 20.5f));
-        TextButtonStyle estilo = new TextButtonStyle();
-		
-		estilo.fontColor = new Color(1, 1, 1, 1);
-		FreeTypeFontParameter params = new FreeTypeFontParameter();
-		FreeTypeFontGenerator gene =  
-			new FreeTypeFontGenerator(Gdx.files.internal("fuentes/LondrinaSolid-Black.ttf"));
-		params.size = 100;
-		estilo.font = gene.generateFont(params);
-		oink= new TextButton("Retry",  estilo);
-		oink.setSize(100f, 100f);
-        oink.setPosition(100f, 100f);
-        oink.setColor(0.1f, 1, 1, 1);
-		
-        stage.addActor(oink);
-        stage.addActor(cochi);
-        stage.addActor(atrapa);
-
+        cochi= new cerditoEntity(
+				manager.get("cerdo/oink.mp3", Sound.class), 
+				cochiTexture, 
+				new Vector2 (5f, 10.5f));
+		cochi.setPosition(
+				(stage.getWidth() - cochiTexture.getWidth())/2f, 
+				(stage.getHeight() - cochiTexture.getHeight())/2f);
+		stage.addActor(cochi);
     }
 
     @Override
@@ -93,10 +77,7 @@ public class GameScreen extends BaseScreen {
 
     @Override
     public void hide() {
-        cochi.detach();
         cochi.remove();
-        atrapa.detach();
-        atrapa.remove();
         Gdx.input.setInputProcessor(null);
     }
 

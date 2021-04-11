@@ -49,6 +49,9 @@ public class Cara extends Image {
 					return new Oruga(game);
 				else 
 					return new MainGame(game).loadingScreen();
+			case 4:
+				if(j == 0) 
+					return new mx.cotapro.dev.rana.screens.GameScreen(game);
 			default:
 				return new Main(game);
 		}

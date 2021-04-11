@@ -46,7 +46,8 @@ public class Select implements Screen{
 			{"oveja", "oso"},
 			{"serpiente", "tortuga"},
 			{"cerdo", "abeja"},
-			{"oruga", "carcal"}
+			{"oruga", "carcal"},
+			{"rana", "rana"}
 		};
 		caras = new Cara[images.length][images[0].length];
 		for(int i = 0; i < images.length; i++) {
