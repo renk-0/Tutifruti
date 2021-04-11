@@ -55,15 +55,16 @@ public class GameScreen extends AbstractScreen{
 		camera.translate(App.V_WIDTH/2f/PPM, App.V_HEIGHT/2f/PPM);
 		// camera.rotate(90f);
 		this.port = new FitViewport(App.V_WIDTH/PPM, App.V_HEIGHT/PPM, camera);
-    }
-
+		ribbit = Gdx.audio.newSound(Gdx.files.internal("rana/ribbit.mp3"));
+	}
 
     @Override
     public void show() {
         this.b2dr = new Box2DDebugRenderer();
         this.world = new World(new Vector2(0f, 0f), false);
+		ribbit.play();
 		initArena();
-    }
+	}
 
 	@Override
 	public void resize(int width, int height) {
