@@ -47,7 +47,7 @@ public class Select implements Screen{
 			{"serpiente", "tortuga"},
 			{"cerdo", "abeja"},
 			{"oruga", "carcal"},
-			{"rana", "rana"}
+			{"rana", "gato"}
 		};
 		caras = new Cara[images.length][images[0].length];
 		for(int i = 0; i < images.length; i++) {
@@ -106,6 +106,5 @@ public class Select implements Screen{
 
 	@Override
 	public void hide() {
-		dispose();
 	}
 }

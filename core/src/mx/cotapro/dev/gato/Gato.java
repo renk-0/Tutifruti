@@ -42,7 +42,6 @@ public class Gato implements Screen {
 		stat = new Btn[3][3];
 		Table table = new Table();
 		table.setPosition(200, 350);
-		table.debug();
 		table.align(Align.center);
 		for(int i = 0; i < stat.length; i++) {
 			table.row();
