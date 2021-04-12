@@ -26,7 +26,7 @@ public class Tutifruti extends Game{
 	@Override
 	public void render () {
 		super.render();
-		if(Gdx.input.isKeyPressed(Keys.BACK))
+		if(Gdx.input.isKeyPressed(Keys.BACK) || Gdx.input.isKeyPressed(Keys.ESCAPE))
 			this.setScreen(new Select(this));
 	}
 	

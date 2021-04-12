@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import mx.cotapro.dev.Tutifruti;
 import mx.cotapro.dev.carcal.game.MainGame;
+import mx.cotapro.dev.gato.Gato;
 import mx.cotapro.dev.mainscreen.Main;
 import mx.cotapro.dev.oso.Screens.PlayScreen;
 import mx.cotapro.dev.oveja.Oveja;
@@ -52,6 +53,8 @@ public class Cara extends Image {
 			case 4:
 				if(j == 0) 
 					return new mx.cotapro.dev.rana.screens.GameScreen(game);
+				else
+					return new Gato(game);
 			default:
 				return new Main(game);
 		}
